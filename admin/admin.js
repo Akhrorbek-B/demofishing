@@ -13,8 +13,8 @@
   const clearNamesBtn = document.getElementById("clearNames");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  const DEMO_USER = "admin";
-  const DEMO_PASSWORD = "demo123";
+  const DEMO_USER = "abahodirov";
+  const DEMO_PASSWORD = "a30102006";
 
   async function getEntries() {
     try {
