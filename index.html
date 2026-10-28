@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cashback | Ta'lim Simulyatsiyasi</title>
+    <meta
+      name="description"
+      content="Cashback ta'lim simulyatsiyasi. Ma'lumotlarni xavfsiz tarzda kuzatib borish uchun demo sayt."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">C</span>
+          Cashback
+        </div>
+        <nav class="nav" aria-label="Asosiy navigatsiya">
+          <a href="#about">Foyda</a>
+          <a href="#calculator">Kalkulyator</a>
+          <a href="#faq">FAQ</a>
+          <a href="/admin/">Admin</a>
+        </nav>
+        <a class="nav-btn" href="#calculator">Boshlash</a>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Ta'lim simulyatsiyasi</p>
+            <h1>O'z xaridingiz uchun cashbackni tezda bilib oling</h1>
+            <p class="lead">
+              Bu sayt faqat o'quv maqsadida yaratilgan. Haqiqiy bank yoki karta
+              ma'lumotlari so'ralmaydi va hech narsa serverga yuborilmaydi.
+            </p>
+
+            <div class="cta-row">
+              <a class="primary-btn" href="#calculator">Cashbackni hisoblash</a>
+              <a class="secondary-btn" href="#about">Batafsil</a>
+            </div>
+
+            <ul class="stats" aria-label="Statistika">
+              <li><strong>5–50%</strong><span>cashback</span></li>
+              <li><strong>24/7</strong><span>demo</span></li>
+              <li><strong>0</strong><span>real ma'lumot</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-panel" aria-label="Cashback demo panel">
+            <div class="mini-card">
+              <div class="mini-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+
+              <div class="bank-box">
+                <p class="box-label">Sizning cashback</p>
+                <h2>+12.5%</h2>
+                <p class="box-note">Yarim yillik aksiya</p>
+              </div>
+
+              <div class="balance-row">
+                <div>
+                  <small>Jami xarid</small>
+                  <strong>2,400,000 so'm</strong>
+                </div>
+                <div class="tag">Onlayn</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="features" id="about">
+          <div class="section-heading">
+            <p class="eyebrow">Nima uchun foydali?</p>
+            <h2>Phishing xavfi haqida o'rganish uchun qulay demo</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="icon">🔒</div>
+              <h3>Xavfsizlik</h3>
+              <p>Hech qanday karta raqami va shaxsiy ma'lumot so'ralmaydi.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon">📊</div>
+              <h3>Tez hisoblash</h3>
+              <p>Sizning summangizga qarab cashback foizi va miqdori ko'rsatiladi.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon">🎓</div>
+              <h3>Ta'lim</h3>
+              <p>Bu loyiha phishing va moliyaviy aldashdan ogohlantirish uchun mo'ljallangan.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="calculator" id="calculator">
+          <div class="calculator-copy">
+            <p class="eyebrow">Cashback kalkulyatori</p>
+            <h2>O'zingizga mos bonusni tekshiring</h2>
+            <p>
+              Ismingiz, karta raqami, muddati va CVV demo ma'lumotlarini kiriting.
+              Dastur tasodifiy cashback ulushini ko'rsatadi va bu faqat demo maqsadga xizmat qiladi.
+            </p>
+          </div>
+
+          <form id="cashbackForm" class="calc-form" novalidate>
+            <label for="name">Ismingiz</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Masalan: Aziz"
+              autocomplete="off"
+              required
+            />
+
+            <label for="cardNumber">Karta raqami (16 raqam)</label>
+            <input
+              id="cardNumber"
+              type="text"
+              name="cardNumber"
+              inputmode="numeric"
+              maxlength="19"
+              placeholder="0000 0000 0000 0000"
+              autocomplete="off"
+              required
+            />
+
+            <label for="cardExpiry">Karta muddati (MM/YY)</label>
+            <input
+              id="cardExpiry"
+              type="text"
+              name="cardExpiry"
+              inputmode="numeric"
+              maxlength="5"
+              placeholder="12/28"
+              autocomplete="off"
+              required
+            />
+
+            <label for="cardCvv">CVV</label>
+            <input
+              id="cardCvv"
+              type="text"
+              name="cardCvv"
+              inputmode="numeric"
+              maxlength="4"
+              placeholder="123"
+              autocomplete="off"
+              required
+            />
+
+            <button type="submit">Cashbackni olish</button>
+          </form>
+        </section>
+
+        <div class="result" id="result" role="status" aria-live="polite"></div>
+
+        <section class="faq" id="faq">
+          <div class="section-heading small">
+            <p class="eyebrow">FAQ</p>
+            <h2>Ko'p so'raladigan savollar</h2>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <h3>Bu haqiqiy bank sayti mi?</h3>
+              <p>Yo'q, bu faqat o'quv va demo maqsad uchun yaratilgan sahifa.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Hech narsa saqlanadimi?</h3>
+              <p>Ha, faqat brauzerda vaqtinchalik demo ma'lumotlar ishlatiladi.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell admin-page">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">A</span>
+          Admin Panel
+        </div>
+        <nav class="nav" aria-label="Admin navigatsiya">
+          <a href="/">Home</a>
+          <a href="/admin/">Admin</a>
+        </nav>
+      </header>
+
+      <main class="admin-main">
+        <section id="loginSection" class="admin-panel" aria-label="Login form">
+          <div class="section-heading small">
+            <p class="eyebrow">Demo login</p>
+            <h2>Admin kirishi</h2>
+          </div>
+
+          <div class="admin-box">
+            <form id="loginForm" novalidate>
+              <label for="username">Login</label>
+              <input id="username" type="text" placeholder="" autocomplete="username" required />
+
+              <label for="password">Parol</label>
+              <input id="password" type="password" placeholder="" autocomplete="current-password" required />
+
+              <button type="submit" class="clear-btn">Kirish</button>
+            </form>
+            <p id="loginError" class="empty" style="color: #e74c3c; display: none;"></p>
+          </div>
+        </section>
+
+        <section id="adminContent" class="admin-panel" aria-label="Admin panel" hidden>
+          <div class="section-heading small">
+            <p class="eyebrow">Admin panel</p>
+            <h2>Foydalanuvchilar ro'yxati</h2>
+          </div>
+
+          <div class="admin-box">
+            <div class="admin-toolbar">
+              <span id="userCount">0 ta foydalanuvchi</span>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <button type="button" id="logoutBtn" class="clear-btn">Chiqish</button>
+                <button type="button" id="clearNames" class="clear-btn">Ro'yxatni tozalash</button>
+              </div>
+            </div>
+
+            <ul id="adminList" class="admin-list" aria-live="polite">
+              <li class="empty">Hozircha ma'lumotlar yo'q.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
